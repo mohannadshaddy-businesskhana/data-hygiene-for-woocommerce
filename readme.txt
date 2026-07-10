@@ -127,6 +127,9 @@ No. Scanning is 100% local. Only the optional payment gateway reconciliation mak
 
 The admin interface is built with React using the official @wordpress/scripts (webpack) build tooling. The complete, un-minified, human-readable source is included in this plugin under the `src/` directory, and the compiled output it generates lives in `build/`.
 
+The public development repository (full source and build tooling) is available at:
+https://github.com/mohannadshaddy-businesskhana/data-hygiene-for-woocommerce
+
 To rebuild the compiled assets from source:
 
 `npm install`
