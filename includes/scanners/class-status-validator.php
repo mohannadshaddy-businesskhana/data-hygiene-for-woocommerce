@@ -25,7 +25,8 @@ class Status_Validator extends Scan_Module {
                     'issue_type'  => 'status_mismatch',
                     'severity'    => 'medium',
                     'description' => sprintf(
-                        __( 'Order #%d is completed (%s) but has no payment method.', 'data-hygiene-for-woocommerce' ),
+                        /* translators: 1: order ID, 2: formatted order total */
+                        __( 'Order #%1$d is completed (%2$s) but has no payment method.', 'data-hygiene-for-woocommerce' ),
                         $order->id,
                         wc_price( $total )
                     ),
@@ -41,7 +42,8 @@ class Status_Validator extends Scan_Module {
                     'issue_type'  => 'missing_transaction',
                     'severity'    => 'high',
                     'description' => sprintf(
-                        __( 'Order #%d is processing via %s but has no transaction ID.', 'data-hygiene-for-woocommerce' ),
+                        /* translators: 1: order ID, 2: payment method */
+                        __( 'Order #%1$d is processing via %2$s but has no transaction ID.', 'data-hygiene-for-woocommerce' ),
                         $order->id,
                         $method
                     ),
@@ -58,6 +60,7 @@ class Status_Validator extends Scan_Module {
                         'issue_type'  => 'status_mismatch',
                         'severity'    => 'high',
                         'description' => sprintf(
+                            /* translators: %d: order ID */
                             __( 'Order #%d is marked as refunded but has no refund records.', 'data-hygiene-for-woocommerce' ),
                             $order->id
                         ),
@@ -75,7 +78,8 @@ class Status_Validator extends Scan_Module {
                         'issue_type'  => 'stale_order',
                         'severity'    => 'low',
                         'description' => sprintf(
-                            __( 'Order #%d has been on-hold for over 7 days with %s payment.', 'data-hygiene-for-woocommerce' ),
+                            /* translators: 1: order ID, 2: payment method */
+                            __( 'Order #%1$d has been on-hold for over 7 days with %2$s payment.', 'data-hygiene-for-woocommerce' ),
                             $order->id,
                             $method
                         ),

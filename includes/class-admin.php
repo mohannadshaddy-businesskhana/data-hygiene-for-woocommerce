@@ -89,7 +89,7 @@ class Admin {
                 <a href="%s" class="button">%s</a>
             </div>',
             esc_attr( $color ),
-            $score,
+            esc_html( $score ),
             esc_html__( 'Last scan', 'data-hygiene-for-woocommerce' ),
             esc_html( wp_date( get_option( 'date_format' ), strtotime( $last->started_at ) ) ),
             esc_html__( 'Issues found', 'data-hygiene-for-woocommerce' ),

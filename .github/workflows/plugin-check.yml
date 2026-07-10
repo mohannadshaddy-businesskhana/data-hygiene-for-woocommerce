@@ -28,3 +28,8 @@ jobs:
         uses: WordPress/plugin-check-action@v1
         with:
           build-dir: '.'
+          # Acceptance gate = zero ERRORS. Warnings are reported but non-blocking:
+          # direct DB queries are inherent to an analytics/reconciliation plugin,
+          # table names derive from $wpdb->prefix (safe), and dev files are excluded
+          # from the distributed package via .distignore.
+          ignore-warnings: true

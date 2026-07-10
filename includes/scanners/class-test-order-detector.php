@@ -78,7 +78,8 @@ class Test_Order_Detector extends Scan_Module {
                     'issue_type'  => 'test_order',
                     'severity'    => count( $reasons ) > 1 ? 'high' : 'medium',
                     'description' => sprintf(
-                        __( 'Order #%d appears to be a test order: %s', 'data-hygiene-for-woocommerce' ),
+                        /* translators: 1: order ID, 2: detection reasons */
+                        __( 'Order #%1$d appears to be a test order: %2$s', 'data-hygiene-for-woocommerce' ),
                         $order->id,
                         implode( ', ', $reasons )
                     ),

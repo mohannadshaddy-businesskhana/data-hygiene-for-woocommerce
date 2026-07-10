@@ -38,6 +38,7 @@ class Date_Validator extends Scan_Module {
                     'issue_type'  => 'invalid_date',
                     'severity'    => 'high',
                     'description' => sprintf(
+                        /* translators: %d: order ID */
                         __( 'Order #%d has an invalid or empty date.', 'data-hygiene-for-woocommerce' ),
                         $order->id
                     ),
@@ -53,7 +54,8 @@ class Date_Validator extends Scan_Module {
                     'issue_type'  => 'future_date',
                     'severity'    => 'critical',
                     'description' => sprintf(
-                        __( 'Order #%d has a future date: %s', 'data-hygiene-for-woocommerce' ),
+                        /* translators: 1: order ID, 2: order date */
+                        __( 'Order #%1$d has a future date: %2$s', 'data-hygiene-for-woocommerce' ),
                         $order->id,
                         $date_str
                     ),
@@ -68,7 +70,8 @@ class Date_Validator extends Scan_Module {
                     'issue_type'  => 'pre_store_date',
                     'severity'    => 'medium',
                     'description' => sprintf(
-                        __( 'Order #%d date (%s) is before the store start date.', 'data-hygiene-for-woocommerce' ),
+                        /* translators: 1: order ID, 2: order date */
+                        __( 'Order #%1$d date (%2$s) is before the store start date.', 'data-hygiene-for-woocommerce' ),
                         $order->id,
                         $date_str
                     ),
@@ -83,7 +86,8 @@ class Date_Validator extends Scan_Module {
                     'issue_type'  => 'suspicious_date',
                     'severity'    => 'high',
                     'description' => sprintf(
-                        __( 'Order #%d has an unrealistic date: %s (before WooCommerce existed).', 'data-hygiene-for-woocommerce' ),
+                        /* translators: 1: order ID, 2: order date */
+                        __( 'Order #%1$d has an unrealistic date: %2$s (before WooCommerce existed).', 'data-hygiene-for-woocommerce' ),
                         $order->id,
                         $date_str
                     ),

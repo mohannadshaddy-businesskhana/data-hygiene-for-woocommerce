@@ -74,6 +74,7 @@ class Auto_Scan {
         if ( $score < 70 ) {
             $should_alert = true;
             $reason       = sprintf(
+                /* translators: %.0f: data confidence score percentage */
                 __( 'Your data confidence score is %.0f%% (below 70%%).', 'data-hygiene-for-woocommerce' ),
                 $score
             );
@@ -83,7 +84,8 @@ class Auto_Scan {
         if ( $prev_score !== null && ( floatval( $prev_score ) - $score ) > 10 ) {
             $should_alert = true;
             $reason       = sprintf(
-                __( 'Your data confidence score dropped from %.0f%% to %.0f%%.', 'data-hygiene-for-woocommerce' ),
+                /* translators: 1: previous confidence score, 2: current confidence score */
+                __( 'Your data confidence score dropped from %1$.0f%% to %2$.0f%%.', 'data-hygiene-for-woocommerce' ),
                 $prev_score,
                 $score
             );
@@ -110,6 +112,7 @@ class Auto_Scan {
             __( 'Confidence Score', 'data-hygiene-for-woocommerce' ),
             round( $score, 1 ) . '%',
             sprintf(
+                /* translators: %s: admin page URL */
                 __( 'View details: %s', 'data-hygiene-for-woocommerce' ),
                 admin_url( 'admin.php?page=data-hygiene-for-woocommerce' )
             )

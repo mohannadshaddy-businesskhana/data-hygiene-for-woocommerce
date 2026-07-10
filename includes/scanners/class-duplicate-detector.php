@@ -41,7 +41,8 @@ class Duplicate_Detector extends Scan_Module {
                             'issue_type'  => 'duplicate',
                             'severity'    => $diff <= 10 ? 'critical' : 'high',
                             'description' => sprintf(
-                                __( 'Order #%d may be a duplicate of #%d — same customer (%s), same amount (%s), %d seconds apart.', 'data-hygiene-for-woocommerce' ),
+                                /* translators: 1: order ID, 2: duplicate order ID, 3: customer identifier, 4: formatted order total, 5: seconds apart */
+                                __( 'Order #%1$d may be a duplicate of #%2$d — same customer (%3$s), same amount (%4$s), %5$d seconds apart.', 'data-hygiene-for-woocommerce' ),
                                 $order->id,
                                 $prev['id'],
                                 $customer,

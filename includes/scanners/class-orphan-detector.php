@@ -22,11 +22,9 @@ class Orphan_Detector extends Scan_Module {
         $placeholders = implode( ',', array_fill( 0, count( $order_ids ), '%d' ) );
 
         // Check for order_stats entries without matching orders.
-        $stats_table = $wpdb->prefix . 'wc_order_stats';
-
         $orphan_stats = $wpdb->get_results( $wpdb->prepare(
             "SELECT os.order_id, os.net_total, os.status, os.date_created
-             FROM {$stats_table} os
+             FROM {$wpdb->prefix}wc_order_stats os
              WHERE os.order_id IN ({$placeholders})
              AND NOT EXISTS (
                  SELECT 1 FROM {$wpdb->prefix}wc_orders o WHERE o.id = os.order_id
@@ -44,7 +42,8 @@ class Orphan_Detector extends Scan_Module {
                 'issue_type'  => 'orphan_order',
                 'severity'    => 'high',
                 'description' => sprintf(
-                    __( 'Order #%d exists in analytics (total: %s) but the order record is missing.', 'data-hygiene-for-woocommerce' ),
+                    /* translators: 1: order ID, 2: order total */
+                    __( 'Order #%1$d exists in analytics (total: %2$s) but the order record is missing.', 'data-hygiene-for-woocommerce' ),
                     $orphan->order_id,
                     wc_price( $orphan->net_total )
                 ),
@@ -61,7 +60,7 @@ class Orphan_Detector extends Scan_Module {
                  FROM {$product_table} opl
                  WHERE opl.order_id IN ({$placeholders})
                  AND NOT EXISTS (
-                     SELECT 1 FROM {$stats_table} os WHERE os.order_id = opl.order_id
+                     SELECT 1 FROM {$wpdb->prefix}wc_order_stats os WHERE os.order_id = opl.order_id
                  )",
                 ...$order_ids
             ) );
@@ -73,6 +72,7 @@ class Orphan_Detector extends Scan_Module {
                     'issue_type'  => 'orphan_lookup',
                     'severity'    => 'medium',
                     'description' => sprintf(
+                        /* translators: %d: order ID */
                         __( 'Product lookup for order #%d has no matching order stats entry.', 'data-hygiene-for-woocommerce' ),
                         $orphan->order_id
                     ),

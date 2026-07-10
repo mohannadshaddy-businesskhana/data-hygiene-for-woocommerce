@@ -23,7 +23,8 @@ class Amount_Validator extends Scan_Module {
                     'issue_type'  => 'negative_amount',
                     'severity'    => 'critical',
                     'description' => sprintf(
-                        __( 'Order #%d has a negative total: %s', 'data-hygiene-for-woocommerce' ),
+                        /* translators: 1: order ID, 2: formatted order total */
+                        __( 'Order #%1$d has a negative total: %2$s', 'data-hygiene-for-woocommerce' ),
                         $order->id,
                         wc_price( $total )
                     ),
@@ -43,6 +44,7 @@ class Amount_Validator extends Scan_Module {
                         'issue_type'  => 'zero_amount',
                         'severity'    => 'medium',
                         'description' => sprintf(
+                            /* translators: %d: order ID */
                             __( 'Order #%d has zero total and no line items.', 'data-hygiene-for-woocommerce' ),
                             $order->id
                         ),
@@ -67,7 +69,8 @@ class Amount_Validator extends Scan_Module {
                                 'issue_type'  => 'missing_product',
                                 'severity'    => 'low',
                                 'description' => sprintf(
-                                    __( 'Order #%d references product #%d which no longer exists.', 'data-hygiene-for-woocommerce' ),
+                                    /* translators: 1: order ID, 2: product ID */
+                                    __( 'Order #%1$d references product #%2$d which no longer exists.', 'data-hygiene-for-woocommerce' ),
                                     $order->id,
                                     $product_id
                                 ),

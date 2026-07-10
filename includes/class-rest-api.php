@@ -235,11 +235,13 @@ class Rest_Api {
 
         $where_sql = implode( ' AND ', $where );
 
-        $total = (int) $wpdb->get_var(
-            $args
-                ? $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE {$where_sql}", ...$args )
-                : "SELECT COUNT(*) FROM {$table} WHERE {$where_sql}"
-        );
+        if ( $args ) {
+            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $where_sql is built from %s placeholders filled by $args; table name derives from $wpdb->prefix.
+            $total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE {$where_sql}", ...$args ) );
+        } else {
+            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- no user input; WHERE is the static "1=1"; table name derives from $wpdb->prefix.
+            $total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$table} WHERE {$where_sql}" );
+        }
 
         $args[] = $per_page;
         $args[] = $offset;
