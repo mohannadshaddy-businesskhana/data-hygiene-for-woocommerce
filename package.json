@@ -1,0 +1,21 @@
+{
+  "name": "data-hygiene-for-woocommerce",
+  "version": "1.0.0",
+  "description": "WooCommerce Data Hygiene & Validation Tool",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js src/",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^27.0.0"
+  },
+  "dependencies": {
+    "@wordpress/api-fetch": "^6.0.0",
+    "@wordpress/components": "^25.0.0",
+    "@wordpress/element": "^5.0.0",
+    "@wordpress/i18n": "^4.0.0",
+    "@wordpress/icons": "^9.0.0"
+  }
+}

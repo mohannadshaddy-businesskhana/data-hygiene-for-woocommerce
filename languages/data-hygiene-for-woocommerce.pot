@@ -1,0 +1,810 @@
+# Copyright (C) 2026 Business Khana
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Data Hygiene for WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/data-hygiene-for-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-06-02T23:34:26+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: data-hygiene-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: data-hygiene-for-woocommerce.php
+msgid "Data Hygiene for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: data-hygiene-for-woocommerce.php
+msgid "https://github.com/businesskhana/data-hygiene-for-woocommerce"
+msgstr ""
+
+#. Description of the plugin
+#: data-hygiene-for-woocommerce.php
+msgid "Detect, quarantine and clean WooCommerce Analytics data corruption — orphan orders, test orders, duplicates, status mismatches — with payment gateway reconciliation. Dry-run mode and full undo log included."
+msgstr ""
+
+#. Author of the plugin
+#: data-hygiene-for-woocommerce.php
+msgid "Business Khana"
+msgstr ""
+
+#. Author URI of the plugin
+#: data-hygiene-for-woocommerce.php
+msgid "https://businesskhana.com"
+msgstr ""
+
+#: data-hygiene-for-woocommerce.php:37
+msgid "WooCommerce Data Hygiene requires WooCommerce to be installed and active."
+msgstr ""
+
+#: includes/class-admin.php:17
+#: includes/class-admin.php:18
+msgid "Data Hygiene"
+msgstr ""
+
+#: includes/class-admin.php:64
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:80
+msgid "Data Confidence Score"
+msgstr ""
+
+#: includes/class-admin.php:75
+msgid "No scans have been run yet."
+msgstr ""
+
+#: includes/class-admin.php:77
+msgid "Run First Scan"
+msgstr ""
+
+#: includes/class-admin.php:93
+msgid "Last scan"
+msgstr ""
+
+#: includes/class-admin.php:95
+msgid "Issues found"
+msgstr ""
+
+#: includes/class-admin.php:98
+msgid "View Details"
+msgstr ""
+
+#: includes/class-auto-scan.php:77
+#, php-format
+msgid "Your data confidence score is %.0f%% (below 70%%)."
+msgstr ""
+
+#: includes/class-auto-scan.php:86
+#, php-format
+msgid "Your data confidence score dropped from %.0f%% to %.0f%%."
+msgstr ""
+
+#. translators: %s: site name
+#: includes/class-auto-scan.php:98
+#, php-format
+msgid "[%s] WooCommerce Data Hygiene Alert"
+msgstr ""
+
+#: includes/class-auto-scan.php:105
+msgid "Scan Summary:"
+msgstr ""
+
+#: includes/class-auto-scan.php:106
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:89
+msgid "Orders Scanned"
+msgstr ""
+
+#: includes/class-auto-scan.php:108
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:93
+#: src/pages/ScanResults.jsx:119
+msgid "Issues Found"
+msgstr ""
+
+#: includes/class-auto-scan.php:110
+msgid "Confidence Score"
+msgstr ""
+
+#: includes/class-auto-scan.php:113
+#, php-format
+msgid "View details: %s"
+msgstr ""
+
+#: includes/class-confidence-scorer.php:82
+#: build/index.js:1
+#: src/components/ConfidenceGauge.jsx:10
+msgid "Excellent"
+msgstr ""
+
+#: includes/class-confidence-scorer.php:85
+#: build/index.js:1
+#: src/components/ConfidenceGauge.jsx:11
+msgid "Good"
+msgstr ""
+
+#: includes/class-confidence-scorer.php:88
+#: build/index.js:1
+#: src/components/ConfidenceGauge.jsx:12
+msgid "Fair"
+msgstr ""
+
+#: includes/class-confidence-scorer.php:91
+#: build/index.js:1
+#: src/components/ConfidenceGauge.jsx:13
+msgid "Poor"
+msgstr ""
+
+#: includes/class-confidence-scorer.php:93
+#: build/index.js:1
+#: src/components/ConfidenceGauge.jsx:14
+msgid "Critical"
+msgstr ""
+
+#: includes/class-quarantine.php:90
+msgid "Quarantine item not found or already restored."
+msgstr ""
+
+#: includes/class-quarantine.php:181
+msgid "Scan not found."
+msgstr ""
+
+#: includes/class-reconciler.php:25
+msgid "Unsupported gateway."
+msgstr ""
+
+#: includes/gateways/class-paypal-reconciler.php:48
+msgid "PayPal API credentials not found. Make sure WooCommerce PayPal is configured."
+msgstr ""
+
+#: includes/gateways/class-stripe-reconciler.php:31
+msgid "Stripe API key not found. Make sure WooCommerce Stripe Gateway is configured."
+msgstr ""
+
+#: includes/scanners/class-amount-validator.php:26
+#, php-format
+msgid "Order #%d has a negative total: %s"
+msgstr ""
+
+#: includes/scanners/class-amount-validator.php:46
+#, php-format
+msgid "Order #%d has zero total and no line items."
+msgstr ""
+
+#: includes/scanners/class-amount-validator.php:70
+#, php-format
+msgid "Order #%d references product #%d which no longer exists."
+msgstr ""
+
+#: includes/scanners/class-date-validator.php:41
+#, php-format
+msgid "Order #%d has an invalid or empty date."
+msgstr ""
+
+#: includes/scanners/class-date-validator.php:56
+#, php-format
+msgid "Order #%d has a future date: %s"
+msgstr ""
+
+#: includes/scanners/class-date-validator.php:71
+#, php-format
+msgid "Order #%d date (%s) is before the store start date."
+msgstr ""
+
+#: includes/scanners/class-date-validator.php:86
+#, php-format
+msgid "Order #%d has an unrealistic date: %s (before WooCommerce existed)."
+msgstr ""
+
+#: includes/scanners/class-duplicate-detector.php:44
+#, php-format
+msgid "Order #%d may be a duplicate of #%d — same customer (%s), same amount (%s), %d seconds apart."
+msgstr ""
+
+#: includes/scanners/class-orphan-detector.php:47
+#, php-format
+msgid "Order #%d exists in analytics (total: %s) but the order record is missing."
+msgstr ""
+
+#: includes/scanners/class-orphan-detector.php:76
+#, php-format
+msgid "Product lookup for order #%d has no matching order stats entry."
+msgstr ""
+
+#: includes/scanners/class-status-validator.php:28
+#, php-format
+msgid "Order #%d is completed (%s) but has no payment method."
+msgstr ""
+
+#: includes/scanners/class-status-validator.php:44
+#, php-format
+msgid "Order #%d is processing via %s but has no transaction ID."
+msgstr ""
+
+#: includes/scanners/class-status-validator.php:61
+#, php-format
+msgid "Order #%d is marked as refunded but has no refund records."
+msgstr ""
+
+#: includes/scanners/class-status-validator.php:78
+#, php-format
+msgid "Order #%d has been on-hold for over 7 days with %s payment."
+msgstr ""
+
+#: includes/scanners/class-test-order-detector.php:53
+msgid "admin email used"
+msgstr ""
+
+#: includes/scanners/class-test-order-detector.php:60
+msgid "$0 completed order"
+msgstr ""
+
+#: includes/scanners/class-test-order-detector.php:65
+msgid "test keyword found"
+msgstr ""
+
+#: includes/scanners/class-test-order-detector.php:71
+msgid "test payment method"
+msgstr ""
+
+#: includes/scanners/class-test-order-detector.php:81
+#, php-format
+msgid "Order #%d appears to be a test order: %s"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/ScanProgress.jsx:7
+msgid "Scanning..."
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:4
+msgid "Orphan Order"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:5
+msgid "Orphan Lookup"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:6
+msgid "Test Order"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:7
+msgid "Duplicate"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:8
+msgid "Status Mismatch"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:9
+msgid "Missing Txn"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:10
+msgid "Stale Order"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:11
+msgid "Future Date"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:12
+msgid "Pre-Store Date"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:13
+msgid "Suspicious Date"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:14
+msgid "Invalid Date"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:15
+msgid "Negative Amount"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:16
+msgid "Zero Amount"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/IssueBadge.jsx:17
+msgid "Missing Product"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:28
+msgid "selected"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:37
+msgid "Restore Selected"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:51
+#: src/pages/Reconciliation.jsx:147
+#: src/pages/ScanResults.jsx:147
+msgid "Order"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:52
+#: src/pages/ScanResults.jsx:149
+msgid "Issue"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:53
+#: src/pages/ScanResults.jsx:150
+msgid "Severity"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:54
+#: src/pages/ScanResults.jsx:151
+msgid "Description"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:55
+msgid "Date"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:56
+msgid "Actions"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:86
+msgid "Restore"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:93
+msgid "Permanently delete this item?"
+msgstr ""
+
+#: build/index.js:1
+#: src/components/QuarantineTable.jsx:98
+msgid "Delete"
+msgstr ""
+
+#: build/index.js:1
+#: src/App.jsx:11
+msgid "Dashboard"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:45
+msgid "Loading dashboard..."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:49
+msgid "Running scan... This may take a few minutes for large stores."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:65
+msgid "Run Full Scan"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:68
+msgid "Quick Scan"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:85
+msgid "Last Scan Summary"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:97
+#: src/pages/Quarantine.jsx:79
+msgid "Quarantined"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:101
+msgid "Last scan:"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:109
+msgid "Issues by Type"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:113
+msgid "Issue Type"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:114
+msgid "Count"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:132
+msgid "Score History"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Dashboard.jsx:74
+msgid "No scans have been run yet. Run your first scan to check data integrity."
+msgstr ""
+
+#: build/index.js:1
+#: src/App.jsx:12
+msgid "Scan Results"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/ScanResults.jsx:59
+msgid "Loading scan results..."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/ScanResults.jsx:65
+msgid "No scans found. Run a scan from the Dashboard tab."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/ScanResults.jsx:100
+msgid "Scanned"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/ScanResults.jsx:104
+msgid "Issues"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/ScanResults.jsx:110
+msgid "Score"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/ScanResults.jsx:125
+msgid "Quarantine All"
+msgstr ""
+
+#: build/index.js:1
+#: src/App.jsx:13
+#: src/pages/ScanResults.jsx:138
+msgid "Quarantine"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/ScanResults.jsx:148
+msgid "Type"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Quarantine.jsx:62
+msgid "Loading quarantine..."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Quarantine.jsx:80
+msgid "Restored"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Quarantine.jsx:81
+msgid "Deleted"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Quarantine.jsx:90
+msgid "items"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Quarantine.jsx:96
+msgid "No items in quarantine."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Quarantine.jsx:34
+msgid "Item restored successfully."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Quarantine.jsx:44
+msgid "Item deleted."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Quarantine.jsx:116
+msgid "Previous"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Quarantine.jsx:126
+msgid "Next"
+msgstr ""
+
+#: build/index.js:1
+#: src/App.jsx:14
+msgid "Reconciliation"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:48
+msgid "Reconciling with payment gateway..."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:63
+#: src/pages/Settings.jsx:152
+msgid "Payment Gateway Reconciliation"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:66
+msgid "Gateway"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:76
+msgid "From Date"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:83
+msgid "To Date"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:91
+msgid "Run Reconciliation"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:99
+msgid "Summary"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:103
+#: src/pages/Reconciliation.jsx:135
+msgid "Matched"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:107
+#: src/pages/Reconciliation.jsx:136
+msgid "Mismatch"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:111
+#: src/pages/Reconciliation.jsx:137
+msgid "Missing in Gateway"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:115
+#: src/pages/Reconciliation.jsx:138
+msgid "Missing in WC"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:121
+msgid "Total Discrepancy"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:130
+msgid "Details"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:134
+msgid "All"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:148
+msgid "WC Total"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:149
+msgid "Gateway Total"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:150
+msgid "Discrepancy"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:151
+msgid "Transaction ID"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:152
+msgid "Status"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Reconciliation.jsx:181
+msgid "No reconciliation data. Run a reconciliation to compare WooCommerce orders with payment gateway records."
+msgstr ""
+
+#: build/index.js:1
+#: src/App.jsx:15
+msgid "Settings"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:46
+msgid "Loading settings..."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:60
+msgid "Scan Settings"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:63
+msgid "Batch Size"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:64
+msgid "Number of orders to process per batch. Lower values for shared hosting."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:72
+msgid "Duplicate Threshold (seconds)"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:73
+msgid "Orders within this time window with same amount and customer are flagged as duplicates."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:81
+msgid "Store Start Date"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:82
+msgid "Orders before this date will be flagged. Leave empty for auto-detection."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:90
+msgid "Additional Test Emails"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:91
+msgid "Comma-separated. Orders from these emails will be flagged as test orders."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:100
+msgid "Automatic Scanning"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:103
+msgid "Enable Weekly Auto-Scan"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:111
+msgid "Scan Day"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:114
+msgid "Monday"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:115
+msgid "Tuesday"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:116
+msgid "Wednesday"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:117
+msgid "Thursday"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:118
+msgid "Friday"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:119
+msgid "Saturday"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:120
+msgid "Sunday"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:130
+msgid "Email Alerts"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:133
+msgid "Send Alert When Score Drops"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:141
+msgid "Alert Email"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:154
+msgid "Gateway credentials are read from WooCommerce payment gateway settings automatically."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:158
+msgid "Enable Stripe Reconciliation"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:165
+msgid "Enable PayPal Reconciliation"
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:33
+msgid "Settings saved successfully."
+msgstr ""
+
+#: build/index.js:1
+#: src/pages/Settings.jsx:173
+msgid "Save Settings"
+msgstr ""
+
+#: build/index.js:1
+#: src/App.jsx:26
+msgid "WooCommerce Data Hygiene"
+msgstr ""

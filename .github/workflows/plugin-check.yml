@@ -1,0 +1,30 @@
+name: plugin-check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  plugin-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Build the React assets so Plugin Check sees the compiled output alongside src/.
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build assets
+        run: npm run build
+
+      # Official WordPress Plugin Check (PCP). Acceptance gate = zero errors.
+      - name: Run Plugin Check
+        uses: WordPress/plugin-check-action@v1
+        with:
+          build-dir: '.'
