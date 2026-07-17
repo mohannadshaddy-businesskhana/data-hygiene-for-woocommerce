@@ -1,0 +1,21 @@
+name: Deploy to WordPress.org
+
+# نشر Data Hygiene إلى مستودع WP.org SVN — device-off عبر CI (بند 6)،
+# والاعتمادات في GitHub Secrets فقط (بند 17): SVN_USERNAME + SVN_PASSWORD (حساب wordpress.org).
+# يدوي فقط: يضيف مهند السرّين ثم يشغّل الـworkflow. ينشر trunk + tag من "Stable tag" في readme.txt.
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    name: Deploy to WordPress.org SVN
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: WordPress Plugin Deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: data-hygiene-for-woocommerce
