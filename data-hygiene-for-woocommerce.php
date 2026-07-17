@@ -92,6 +92,10 @@ function datahyg_init() {
     DataHygiene\Admin::init();
     DataHygiene\Rest_Api::init();
     DataHygiene\Auto_Scan::init();
+
+    // Pro layer (freemium): license client + gated features.
+    DataHygiene\License::init();
+    DataHygiene\Pro_Export::init();
 }
 add_action( 'plugins_loaded', 'datahyg_init' );
 
