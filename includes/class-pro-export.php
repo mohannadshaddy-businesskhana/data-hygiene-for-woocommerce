@@ -49,25 +49,43 @@ class Pro_Export {
 		$table = $wpdb->prefix . 'wc_data_scan_log';
 		$rows  = $wpdb->get_results( "SELECT started_at, confidence_score, issues_found FROM {$table} ORDER BY started_at DESC", ARRAY_A );
 
-		nocache_headers();
-		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename=data-hygiene-scan-history.csv' );
-
-		$out = fopen( 'php://output', 'w' );
-		fputcsv( $out, array( 'started_at', 'confidence_score', 'issues_found' ) );
+		// Build CSV in memory (no direct filesystem handles — Plugin Check compliant).
+		$lines   = array();
+		$lines[] = 'started_at,confidence_score,issues_found';
 		if ( $rows ) {
 			foreach ( $rows as $row ) {
-				fputcsv(
-					$out,
-					array(
-						(string) $row['started_at'],
-						(string) $row['confidence_score'],
-						(string) $row['issues_found'],
+				$lines[] = implode(
+					',',
+					array_map(
+						array( __CLASS__, 'csv_escape' ),
+						array(
+							(string) $row['started_at'],
+							(string) $row['confidence_score'],
+							(string) $row['issues_found'],
+						)
 					)
 				);
 			}
 		}
-		fclose( $out );
+		$csv = implode( "\r\n", $lines ) . "\r\n";
+
+		nocache_headers();
+		header( 'Content-Type: text/csv; charset=utf-8' );
+		header( 'Content-Disposition: attachment; filename=data-hygiene-scan-history.csv' );
+		echo $csv; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CSV file download, not HTML output.
 		exit;
+	}
+
+	/**
+	 * Escape a single CSV field per RFC 4180.
+	 *
+	 * @param string $value Field value.
+	 * @return string
+	 */
+	private static function csv_escape( $value ) {
+		if ( preg_match( '/[",\r\n]/', $value ) ) {
+			return '"' . str_replace( '"', '""', $value ) . '"';
+		}
+		return $value;
 	}
 }
