@@ -161,7 +161,10 @@ class License {
 				<li><?php esc_html_e( 'Full CSV export of your scan history', 'data-hygiene-for-woocommerce' ); ?></li>
 				<li><?php esc_html_e( 'Scheduled data-health reports by email (weekly / monthly)', 'data-hygiene-for-woocommerce' ); ?></li>
 			</ul>
+			<h3><?php esc_html_e( 'Export', 'data-hygiene-for-woocommerce' ); ?></h3>
 			<p><?php Pro_Export::render_button(); ?></p>
+			<h3><?php esc_html_e( 'Scheduled email report', 'data-hygiene-for-woocommerce' ); ?></h3>
+			<?php Pro_Reports::render_settings(); ?>
 		</div>
 		<?php
 	}

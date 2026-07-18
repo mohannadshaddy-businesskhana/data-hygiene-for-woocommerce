@@ -55,6 +55,7 @@ register_activation_hook( __FILE__, 'datahyg_activate' );
  */
 function datahyg_deactivate() {
     wp_clear_scheduled_hook( 'datahyg_weekly_scan' );
+    wp_clear_scheduled_hook( 'datahyg_pro_report' );
 }
 register_deactivation_hook( __FILE__, 'datahyg_deactivate' );
 
@@ -96,6 +97,7 @@ function datahyg_init() {
     // Pro layer (freemium): license client + gated features.
     DataHygiene\License::init();
     DataHygiene\Pro_Export::init();
+    DataHygiene\Pro_Reports::init();
 }
 add_action( 'plugins_loaded', 'datahyg_init' );
 
