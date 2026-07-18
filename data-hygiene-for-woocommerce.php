@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Data Hygiene for WooCommerce
  * Description: Detect, quarantine and clean WooCommerce Analytics data corruption — orphan orders, test orders, duplicates, status mismatches — with payment gateway reconciliation. Dry-run mode and full undo log included.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Business Khana
  * Text Domain: data-hygiene-for-woocommerce
  * Domain Path: /languages
@@ -20,7 +20,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'DATAHYG_VERSION', '1.0.0' );
+define( 'DATAHYG_VERSION', '1.1.0' );
 define( 'DATAHYG_PLUGIN_FILE', __FILE__ );
 define( 'DATAHYG_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DATAHYG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

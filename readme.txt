@@ -4,7 +4,7 @@ Tags: woocommerce, analytics, data-cleaning, reconciliation, quarantine
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,12 @@ The build scripts are defined in `package.json` at the plugin root. The source i
 
 == Changelog ==
 
+= 1.1.0 =
+* Added: optional Pro license framework
+* Added: Pro — full CSV export of scan history
+* Added: Pro — scheduled data-health email reports (weekly / monthly)
+* All existing free features remain unchanged
+
 = 1.0.0 =
 * Initial release
 * 6 scan modules: orphan, test, duplicate, status, date, amount
@@ -152,6 +158,9 @@ The build scripts are defined in `package.json` at the plugin root. The source i
 * HPOS compatibility
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Adds an optional Pro tier. All existing free features remain unchanged.
 
 = 1.0.0 =
 First public release. Always run a dry-run scan before quarantining on a production store.
