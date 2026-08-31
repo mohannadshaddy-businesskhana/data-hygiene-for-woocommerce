@@ -22,8 +22,28 @@ jobs:
       - name: Build assets
         run: npm run build
 
-      - name: Verify build output exists
-        run: test -f build/index.js
+      # الملفات الثلاثة التي تُحمّلها includes/class-admin.php بالاسم.
+      # نقصان أي منها = صفحة أدمن فاضية عند المستخدم (حادثة 1.0.0/1.1.0).
+      - name: Verify admin bundle matches what class-admin.php enqueues
+        run: |
+          set -e
+          for f in build/index.js build/index.asset.php build/style-index.css; do
+            test -s "$f" || { echo "::error::MISSING $f"; exit 1; }
+            echo "ok: $f ($(wc -c < "$f") bytes)"
+          done
+
+      # إثبات أن build/ ينجو من التغليف: نحاكي rsync الذي يستخدمه
+      # 10up/action-wordpress-plugin-deploy مع .distignore.
+      - name: Verify build/ survives .distignore packaging
+        run: |
+          set -e
+          mkdir -p /tmp/pkg
+          rsync -r --exclude-from=.distignore --exclude='.git/' ./ /tmp/pkg/
+          for f in build/index.js build/index.asset.php build/style-index.css; do
+            test -s "/tmp/pkg/$f" || { echo "::error::$f excluded from package by .distignore"; exit 1; }
+          done
+          echo "packaged files: $(find /tmp/pkg -type f | wc -l)"
+          find /tmp/pkg/build -type f | sort
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4

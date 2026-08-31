@@ -1,7 +1,14 @@
 name: Deploy to WordPress.org
 
 # نشر Data Hygiene إلى WP.org SVN — device-off، الاعتمادات في GitHub Secrets (بند 17).
-# يُشغَّل بدفع git tag (مثل 1.0.0) => الأكشن يأخذ الإصدار من التاج. VERSION مثبّت احتياطياً.
+# يُشغَّل بدفع git tag (مثل 1.1.1) => الأكشن يأخذ الإصدار من التاج. VERSION مثبّت احتياطياً.
+# ملاحظة: SVN_PASSWORD لحساب عليه 2FA يجب أن يكون "SVN password" المنفصل من WP.org،
+# لا باسوورد الحساب.
+#
+# 🔴 درس 2026-08-31: الإصداران 1.0.0 و1.1.0 نُشرا **بلا مجلد build/** لأن هذه الـworkflow
+# كانت تنشر مخرجات `checkout` مباشرة، و`build/` في `.gitignore` فلا يوجد في الريبو.
+# النتيجة: صفحة الأدمن كانت فاضية عند كل مستخدم (enqueue لـ build/index.js غير موجود).
+# لذلك: البناء من المصدر **قبل** النشر + بوابة تحقق تُفشل النشر بدل شحن حزمة بلا واجهة.
 
 on:
   push:
@@ -14,10 +21,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # يُبنى الـadmin app من المصدر كي تطابق ملفات build/ المشحونة محتوى src/.
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build assets
+        run: npm run build
+
+      # بوابة ضد الفشل الصامت: الملفات الثلاثة التي تُحمّلها class-admin.php
+      # (build/index.js · build/index.asset.php · build/style-index.css)
+      # لازم تكون موجودة، وإلا فالحزمة بلا واجهة أدمن — نفشل هنا لا عند المستخدم.
+      - name: Verify admin bundle exists (fail loudly, never ship a UI-less package)
+        run: |
+          set -e
+          for f in build/index.js build/index.asset.php build/style-index.css; do
+            test -s "$f" || { echo "::error::MISSING $f — refusing to deploy a package without its admin UI"; exit 1; }
+            echo "ok: $f ($(wc -c < "$f") bytes)"
+          done
+
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: data-hygiene-for-woocommerce
-          VERSION: "1.1.0"
+          VERSION: "1.1.1"

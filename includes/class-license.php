@@ -24,6 +24,22 @@ class License {
 		add_action( 'admin_init', array( __CLASS__, 'handle_form' ) );
 	}
 
+	/**
+	 * Where Pro can be bought, or '' while it is not on sale.
+	 *
+	 * Empty by default so the page never implies a store that does not exist yet.
+	 * Set the DATAHYG_PRO_URL constant (or filter) once the checkout page is live.
+	 *
+	 * @return string Validated URL, or empty string.
+	 */
+	public static function purchase_url() {
+		$url = defined( 'DATAHYG_PRO_URL' ) ? DATAHYG_PRO_URL : '';
+		/** Filters the Pro checkout URL shown on the license page. */
+		$url = (string) apply_filters( 'datahyg_pro_purchase_url', $url );
+
+		return $url && wp_http_validate_url( $url ) ? esc_url_raw( $url ) : '';
+	}
+
 	public static function register_menu() {
 		add_submenu_page(
 			'woocommerce',
@@ -129,8 +145,12 @@ class License {
 	 * Render the Pro / license admin page.
 	 */
 	public static function render_page() {
-		$key    = (string) get_option( self::OPTION_KEY, '' );
-		$active = self::is_pro();
+		$key      = (string) get_option( self::OPTION_KEY, '' );
+		$active   = self::is_pro();
+		$store    = self::purchase_url();
+		$key_hint = $store
+			? __( 'Enter the license key from your purchase to unlock Pro features.', 'data-hygiene-for-woocommerce' )
+			: __( 'If you already have a license key, enter it here.', 'data-hygiene-for-woocommerce' );
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'Data Hygiene Pro', 'data-hygiene-for-woocommerce' ); ?></h1>
@@ -149,7 +169,7 @@ class License {
 						<td>
 							<input name="datahyg_license_key" id="datahyg_license_key" type="text" class="regular-text"
 								value="<?php echo esc_attr( $key ); ?>" placeholder="PRO-XXXX-XXXX-XXXX-XXXX" />
-							<p class="description"><?php esc_html_e( 'Enter the license key from your purchase to unlock Pro features.', 'data-hygiene-for-woocommerce' ); ?></p>
+							<p class="description"><?php echo esc_html( $key_hint ); ?></p>
 						</td>
 					</tr>
 				</table>
@@ -161,6 +181,17 @@ class License {
 				<li><?php esc_html_e( 'Full CSV export of your scan history', 'data-hygiene-for-woocommerce' ); ?></li>
 				<li><?php esc_html_e( 'Scheduled data-health reports by email (weekly / monthly)', 'data-hygiene-for-woocommerce' ); ?></li>
 			</ul>
+			<?php if ( ! $active ) : ?>
+				<?php if ( $store ) : ?>
+					<p>
+						<a class="button button-primary" href="<?php echo esc_url( $store ); ?>" target="_blank" rel="noopener noreferrer">
+							<?php esc_html_e( 'Get Pro', 'data-hygiene-for-woocommerce' ); ?>
+						</a>
+					</p>
+				<?php else : ?>
+					<p><em><?php esc_html_e( 'Pro is not on sale yet. Every feature listed on the plugin page stays free and fully functional.', 'data-hygiene-for-woocommerce' ); ?></em></p>
+				<?php endif; ?>
+			<?php endif; ?>
 			<h3><?php esc_html_e( 'Export', 'data-hygiene-for-woocommerce' ); ?></h3>
 			<p><?php Pro_Export::render_button(); ?></p>
 			<h3><?php esc_html_e( 'Scheduled email report', 'data-hygiene-for-woocommerce' ); ?></h3>

@@ -4,7 +4,7 @@ Tags: woocommerce, analytics, data-cleaning, reconciliation, quarantine
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,12 @@ The build scripts are defined in `package.json` at the plugin root. The source i
 
 == Changelog ==
 
+= 1.1.1 =
+* Fixed (important): the packaged plugin was missing its compiled admin assets, so the Data Hygiene screen loaded empty in 1.0.0 and 1.1.0. The dashboard, scan results, quarantine and reconciliation screens now load as intended. If the plugin looked blank for you, this release is the fix — no reinstall or reconfiguration needed
+* Fixed: the Pro page no longer refers to a purchase that is not available yet; it now states plainly that Pro is not on sale and that all listed free features stay free
+* Added: DATAHYG_PRO_URL constant / datahyg_pro_purchase_url filter for the checkout link, validated before it is rendered
+* No change to scanning, quarantine, undo, reconciliation or any stored data
+
 = 1.1.0 =
 * Added: optional Pro license framework
 * Added: Pro — full CSV export of scan history
@@ -158,6 +164,9 @@ The build scripts are defined in `package.json` at the plugin root. The source i
 * HPOS compatibility
 
 == Upgrade Notice ==
+
+= 1.1.1 =
+Recommended for everyone: restores the admin screens, which were missing their compiled assets in 1.0.0 and 1.1.0 and loaded empty. Also a wording fix on the Pro page. No setting or data change.
 
 = 1.1.0 =
 Adds an optional Pro tier. All existing free features remain unchanged.
